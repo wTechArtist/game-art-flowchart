@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 需要使用文本标签的软件列表 - 提取为全局常量
+    const TEXT_LABEL_SOFTWARES = [
+        'Corel Painter', 'SketchUp', '3ds Max', 'ZBrush',
+        'Mudbox', 'Topogun', 'RizomUV', 'Marmoset Toolbag', 'xNormal',
+        '3D Coat', 'Mari', 'RealityCapture', 'NVIDIA Skinning Tools',
+        'Mixamo', 'mGear', 'MotionBuilder', 'Spine', 'Live2D', 'Adobe Animate',
+        'PopcornFX', 'EmberGen', 'Unity Shader Graph', 'Unreal Material Editor',
+        // 新增的软件
+        'Principle', 'Unreal Engine', 'Unreal Engine (UMG)', 'Scaleform', 
+        'Axure', 'TexturePacker', 'CryEngine', 'Perforce', 
+        'Unity Profiler', 'Unreal Profiling tools', 'RenderDoc', 
+        'PIX', 'Shader compilers'
+    ];
+
     const globalLogoMap = {
         'Adobe Photoshop': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/1200px-Adobe_Photoshop_CC_icon.svg.png',
         'Procreate': 'https://assets.procreate.art/img/procreate-icon-search-display.png',
@@ -51,26 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
         'Visual Studio': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/1024px-Visual_Studio_Icon_2019.svg.png'
     };
 
+    // 图标加载错误处理函数
+    function handleIconLoadError(img, softwareName) {
+        const parent = img.parentElement;
+        const shortName = getShortName(softwareName);
+        
+        // 创建替代的文本标签
+        const textLabel = document.createElement('div');
+        textLabel.className = 'software-logo-text group relative rounded-lg bg-gray-200 hover:bg-gray-300 px-2 py-1 inline-flex items-center justify-center text-sm font-medium transition-colors';
+        textLabel.title = softwareName;
+        textLabel.textContent = shortName;
+        
+        // 替换图像元素
+        parent.replaceChild(textLabel, img);
+    }
 
     const getLogosForTools = (toolNames) => {
-        // 需要使用文本标签的软件列表
-        const textLabelSoftwares = [
-            'Corel Painter', 'SketchUp', '3ds Max', 'ZBrush',
-            'Mudbox', 'Topogun', 'RizomUV', 'Marmoset Toolbag', 'xNormal',
-            '3D Coat', 'Mari', 'RealityCapture', 'NVIDIA Skinning Tools',
-            'Mixamo', 'mGear', 'MotionBuilder', 'Spine', 'Live2D', 'Adobe Animate',
-            'PopcornFX', 'EmberGen', 'Unity Shader Graph', 'Unreal Material Editor'
-        ];
-
         return toolNames.map(name => {
             const cleanName = name.replace(' (辅助)', '').replace(' (粒子系统 Shuriken)', '').replace(' (Cascade/Niagara)', '').replace(' (Maya 插件)', '').replace(' (Blender 插件)', '').replace(' (UGUI, TextMesh Pro)','').replace(' (UMG)','').trim();
             
             // 检查是否需要使用文本标签 - 基于原始名称和清理后的名称进行匹配
-            const shouldUseTextLabel = textLabelSoftwares.some(sw => 
+            const shouldUseTextLabel = TEXT_LABEL_SOFTWARES.some(sw => 
                 name.includes(sw) || cleanName.includes(sw) ||
                 // 特殊情况处理
-                (sw === 'Unreal Material Editor' && name.includes('Unreal') && name.includes('Material')) ||
-                (sw === 'Unity Shader Graph' && name.includes('Unity') && name.includes('Shader'))
+                (name.includes('Unreal') && name.includes('Engine')) ||
+                (name.includes('Unity') && name.includes('Profiler'))
             );
             
             if (shouldUseTextLabel) {
@@ -91,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Added fallbacks based on common partial names
             if (cleanName.includes("Photoshop")) return {url: globalLogoMap["Adobe Photoshop"], name: "Adobe Photoshop"}; // Handles "Photoshop" alone
             if (cleanName.includes("Illustrator")) return {url: globalLogoMap["Adobe Illustrator"], name: "Adobe Illustrator"};
-            if (cleanName === 'Godot') return {url: globalLogoMap["Godot Engine"], name: "Godot Engine"};
+            if (name === 'Godot') return {url: globalLogoMap["Godot Engine"], name: "Godot Engine"};
             if (cleanName.includes('NVIDIA')) return { url: globalLogoMap['NVIDIA Skinning Tools'], name: 'NVIDIA'}; // Handle NVIDIA specifically
             if (cleanName.includes('Xcode')) return { url: globalLogoMap['Xcode Instruments'], name: 'Xcode'}; // Handle Xcode specifically
 
@@ -246,10 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `;
                 } else {
-                    // 使用图像显示
+                    // 使用图像显示，添加onerror处理
                     logosHTML += `
                         <div class="software-logo group relative" title="${logo.name}">
-                            <img src="${logo.url}" alt="${logo.name}" class="w-8 h-8 md:w-10 md:h-10 object-contain transition-transform duration-200 group-hover:scale-110">
+                            <img src="${logo.url}" alt="${logo.name}" class="w-8 h-8 md:w-10 md:h-10 object-contain transition-transform duration-200 group-hover:scale-110" onerror="handleIconLoadError(this, '${logo.name.replace(/'/g, "\\'")}')">
                         </div>
                     `;
                 }
@@ -303,32 +322,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 检查是否是使用文本标签的软件
                 const cleanName = originalName.replace(' (辅助)', '').replace(' (粒子系统 Shuriken)', '').replace(' (Cascade/Niagara)', '').replace(' (Maya 插件)', '').replace(' (Blender 插件)', '').replace(' (UGUI, TextMesh Pro)','').replace(' (UMG)','').trim();
                 
-                // 重用getLogosForTools中的逻辑来决定是否使用文本标签
-                const textLabelSoftwares = [
-                    'Corel Painter', 'SketchUp', '3ds Max', 'ZBrush',
-                    'Mudbox', 'Topogun', 'RizomUV', 'Marmoset Toolbag', 'xNormal',
-                    '3D Coat', 'Mari', 'RealityCapture', 'NVIDIA Skinning Tools',
-                    'Mixamo', 'mGear', 'MotionBuilder', 'Spine', 'Live2D', 'Adobe Animate',
-                    'PopcornFX', 'EmberGen', 'Unity Shader Graph', 'Unreal Material Editor'
-                ];
-                
-                const shouldUseTextLabel = textLabelSoftwares.some(sw => 
+                // 使用全局定义的TEXT_LABEL_SOFTWARES来决定是否使用文本标签
+                const shouldUseTextLabel = TEXT_LABEL_SOFTWARES.some(sw => 
                     originalName.includes(sw) || cleanName.includes(sw) ||
-                    (sw === 'Unreal Material Editor' && originalName.includes('Unreal') && originalName.includes('Material')) ||
-                    (sw === 'Unity Shader Graph' && originalName.includes('Unity') && originalName.includes('Shader'))
+                    // 特殊情况处理
+                    (originalName.includes('Unreal') && originalName.includes('Engine')) ||
+                    (originalName.includes('Unity') && originalName.includes('Profiler'))
                 );
                 
                 let logoInfo;
                 if (shouldUseTextLabel) {
-                    // 文本标签显示
+                    // 文本标签显示 - 使用与主流程图一致的样式
                     logoInfo = `<span class="inline-flex items-center justify-center w-6 h-6 mr-2 bg-gray-200 rounded-lg text-xs font-medium">${getShortName(cleanName)}</span>`;
                 } else {
-                    // 常规图标处理
+                    // 常规图标处理，添加onerror处理
                     const logoUrl = getLogoUrlForSoftware(cleanName);
                     if (logoUrl) {
-                        logoInfo = `<img src="${logoUrl}" alt="${cleanName}" class="w-5 h-5 mr-2 object-contain inline-block">`;
+                        logoInfo = `<img src="${logoUrl}" alt="${cleanName}" class="w-5 h-5 mr-2 object-contain inline-block" onerror="this.parentNode.innerHTML = '<span class=\\'inline-flex items-center justify-center w-6 h-6 mr-2 bg-gray-200 rounded-lg text-xs font-medium\\'>${getShortName(cleanName)}</span>';">`;
                     } else {
-                        logoInfo = `<span class="inline-block w-5 h-5 mr-2 bg-gray-200 rounded-sm flex items-center justify-center text-[0.5rem] text-gray-500" aria-label="No logo">NL</span>`;
+                        logoInfo = `<span class="inline-flex items-center justify-center w-6 h-6 mr-2 bg-gray-200 rounded-lg text-xs font-medium">${getShortName(cleanName)}</span>`;
                     }
                 }
 
@@ -576,7 +588,21 @@ const getShortName = (name) => {
         'PopcornFX': 'PFX',
         'EmberGen': 'EG',
         'Unity Shader Graph': 'USG',
-        'Unreal Material Editor': 'UME'
+        'Unreal Material Editor': 'UME',
+        // 新增软件的缩写
+        'Principle': 'Prin',
+        'Unreal Engine': 'UE',
+        'Unreal Engine (UMG)': 'UMG',
+        'Scaleform': 'SF',
+        'Axure': 'Axure',
+        'TexturePacker': 'TP',
+        'CryEngine': 'CE',
+        'Perforce': 'P4',
+        'Unity Profiler': 'UProf',
+        'Unreal Profiling tools': 'UProf',
+        'RenderDoc': 'RDoc',
+        'PIX': 'PIX',
+        'Shader compilers': 'SC'
     };
 
     if (specialAbbreviations[name]) {
