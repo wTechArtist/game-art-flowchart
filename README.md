@@ -17,27 +17,19 @@
 
 ## 图标本地化
 
-项目包含多个实用工具，用于将远程图标下载并存储到本地：
+项目所有软件图标均已下载到本地 `icons/` 目录中，并通过 `flowchart.js` 直接引用本地路径。这解决了CORS问题，提高了加载速度和可靠性。
 
-1. `manual_download.sh` - Bash脚本，自动下载所有图标并更新路径
-   ```bash
-   chmod +x manual_download.sh
-   ./manual_download.sh
-   ```
+要重新下载或更新所有图标，请使用项目根目录下的 `download_icons.sh` 脚本：
 
-2. `download_icons.js` - Node.js脚本，下载图标并自动更新flowchart.js
-   ```bash
-   node download_icons.js
-   ```
+```bash
+# 确保脚本有执行权限
+chmod +x download_icons.sh
 
-3. `update_icon_paths.js` - 仅更新路径，生成下载指南
-   ```bash
-   node update_icon_paths.js
-   ```
+# 执行脚本下载所有图标
+./download_icons.sh
+```
 
-4. `icon_template.js` - 包含所有软件的本地图标路径模板
-
-本地化图标可以解决CORS问题，提高加载速度和可靠性。
+此脚本会将图标分别下载到 `icons/icons8` 和 `icons/flaticon` 目录中。
 
 ## 如何使用
 
@@ -46,5 +38,5 @@
 ## 本地开发
 
 1. 克隆仓库
-2. 直接在浏览器中打开 index.html 文件
-3. 修改 flowchart.js 可自定义流程节点内容和连接关系
+2. 直接在浏览器中打开 `index.html` 文件
+3. 修改 `flowchart.js` 可自定义流程节点内容和连接关系
