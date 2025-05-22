@@ -15,6 +15,30 @@
 - Tailwind CSS 用于样式
 - LeaderLine.js 用于绘制流程连接线
 
+## 图标本地化
+
+项目包含多个实用工具，用于将远程图标下载并存储到本地：
+
+1. `manual_download.sh` - Bash脚本，自动下载所有图标并更新路径
+   ```bash
+   chmod +x manual_download.sh
+   ./manual_download.sh
+   ```
+
+2. `download_icons.js` - Node.js脚本，下载图标并自动更新flowchart.js
+   ```bash
+   node download_icons.js
+   ```
+
+3. `update_icon_paths.js` - 仅更新路径，生成下载指南
+   ```bash
+   node update_icon_paths.js
+   ```
+
+4. `icon_template.js` - 包含所有软件的本地图标路径模板
+
+本地化图标可以解决CORS问题，提高加载速度和可靠性。
+
 ## 如何使用
 
 直接访问：https://wTechArtist.github.io/game-art-flowchart/

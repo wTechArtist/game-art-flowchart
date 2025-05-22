@@ -1,0 +1,61 @@
+// 手动更新图标路径的模板
+// 请将下面的远程URL路径替换为本地图标路径 './icons/软件名称.png'
+
+const globalLogoMap = {
+    'Adobe Photoshop': './icons/adobe-photoshop.png',
+    'Procreate': './icons/procreate.png',
+    'Autodesk Maya': './icons/autodesk-maya.png',
+    'Blender': './icons/blender-3d.png',
+    'ZBrush': './icons/zbrush.png',
+    'Substance Painter': './icons/substance-painter.png',
+    'MotionBuilder': './icons/motionbuilder.png',
+    'Unity Engine': './icons/unity.png',
+    'Unreal Engine': './icons/unreal-engine.png',
+    'Houdini': './icons/houdini.png',
+    'Adobe Illustrator': './icons/adobe-illustrator.png',
+    'Figma': './icons/figma.png',
+    'Corel Painter': './icons/corel-painter.png',
+    'SketchUp': './icons/sketchup.png',
+    '3ds Max': './icons/3ds-max.png',
+    'Mudbox': './icons/mudbox.png',
+    'Topogun': './icons/topogun.png',
+    'RizomUV': './icons/rizom-uv.png',
+    'Marmoset Toolbag': './icons/marmoset-toolbag.png',
+    'xNormal': './icons/xnormal.png',
+    'Substance Designer': './icons/substance-designer.png',
+    '3D Coat': './icons/3d-coat.png',
+    'Mari': './icons/mari.png',
+    'RealityCapture': './icons/reality-capture.png',
+    'AdvancedSkeleton': './icons/advanced-skeleton.png',
+    'mGear': './icons/mgear.png',
+    'Rigify': './icons/rigify.png',
+    'Mixamo': './icons/mixamo.png',
+    'NVIDIA Skinning Tools': './icons/nvidia-skinning-tools.png',
+    'Spine': './icons/spine.png',
+    'Live2D': './icons/live2d.png',
+    'Adobe Animate': './icons/adobe-animate.png',
+    'PopcornFX': './icons/popcorn-fx.png',
+    'Adobe After Effects': './icons/adobe-after-effects.png',
+    'EmberGen': './icons/embergen.png',
+    'Sketch': './icons/sketch.png',
+    'Adobe XD': './icons/adobe-xd.png',
+    'Principle': './icons/principle.png',
+    'Scaleform': './icons/scaleform.png',
+    'Axure': './icons/axure.png',
+    'TexturePacker': './icons/texture-packer.png',
+    'CryEngine': './icons/cryengine.png',
+    'Godot Engine': './icons/godot-engine.png',
+    'Git': './icons/git.png',
+    'Perforce': './icons/perforce.png',
+    'RenderDoc': './icons/renderdoc.png',
+    'PIX': './icons/pix.png',
+    'Xcode Instruments': './icons/xcode-instruments.png',
+    'Visual Studio': './icons/visual-studio.png',
+    'Unity Shader Graph': './icons/unity-shader-graph.png',
+    'Unreal Material Editor': './icons/unreal-material-editor.png'
+};
+
+// 使用方法:
+// 1. 创建icons目录
+// 2. 下载所有图标到icons目录，并根据上面的命名规则重命名
+// 3. 复制此globalLogoMap对象并替换flowchart.js中的对应部分 
