@@ -1,0 +1,46 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.flowchart-container {
+    position: relative;
+    /* padding-bottom: 20px; Removed as legend is removed */
+}
+
+.process-node {
+    transition: transform 0.2s, box-shadow 0.2s, ring 0.2s;
+    position: relative; /* Needed for LeaderLine */
+    z-index: 10; /* Ensure nodes are above lines */
+}
+
+.process-node:hover {
+    transform: translateY(-5px);
+}
+
+/* Active state styling handled by JS adding ring classes */
+
+#details-modal {
+    /* Hidden by default via Tailwind hidden class on the element */
+}
+
+#modal-content-wrapper {
+    /* Transition styles handled by JS adding classes */
+}
+
+#modal-close-button {
+    /* Positioning relative to modal content */
+}
+
+#modal-body {
+    max-height: 80vh; /* Allow scrolling */
+    overflow-y: auto;
+}
+
+/* Specific styles adjusted for the diagram layout */
+/* .grid-cols-[1fr,minmax(300px,2fr),1fr] {
+    grid-template-columns: 1fr minmax(300px, 2fr) 1fr;
+} */
+
+.leader-line {
+    z-index: 5; /* Lines below nodes */
+}
