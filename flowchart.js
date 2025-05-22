@@ -1,68 +1,68 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 需要使用文本标签的软件列表 - 提取为全局常量
     const TEXT_LABEL_SOFTWARES = [
-        'Corel Painter', 'SketchUp', '3ds Max', 'ZBrush',
-        'Mudbox', 'Topogun', 'RizomUV', 'Marmoset Toolbag', 'xNormal',
-        '3D Coat', 'Mari', 'RealityCapture', 'NVIDIA Skinning Tools',
-        'Mixamo', 'mGear', 'MotionBuilder', 'Spine', 'Live2D', 'Adobe Animate',
-        'PopcornFX', 'EmberGen', 'Unity Shader Graph', 'Unreal Material Editor',
-        // 新增的软件
-        'Principle', 'Unreal Engine', 'Unreal Engine (UMG)', 'Scaleform', 
-        'Axure', 'TexturePacker', 'CryEngine', 'Perforce', 
+        // 移除有可靠图标的软件，保留无可靠图标的软件
+        'Topogun', 'RizomUV', 'xNormal',
+        '3D Coat', 'NVIDIA Skinning Tools',
+        'mGear', 'Spine', 'Live2D', 
+        'PopcornFX', 'Unity Shader Graph', 'Unreal Material Editor',
+        // 新增的软件中保留无可靠图标的软件
+        'Principle', 'Scaleform', 
+        'Axure', 'TexturePacker', 
         'Unity Profiler', 'Unreal Profiling tools', 'RenderDoc', 
         'PIX', 'Shader compilers'
     ];
 
     const globalLogoMap = {
-        'Adobe Photoshop': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/1200px-Adobe_Photoshop_CC_icon.svg.png',
-        'Procreate': 'https://assets.procreate.art/img/procreate-icon-search-display.png',
-        'Autodesk Maya': 'https://1000logos.net/wp-content/uploads/2023/04/Autodesk-Maya-logo.png',
-        'Blender': 'https://download.blender.org/branding/community/blender_community_badge_orange.png',
-        'ZBrush': 'https://www.maxon.net/img/logos/maxon-zbrush-logo.svg', // Updated
-        'Substance Painter': 'https://cdn.worldvectorlogo.com/logos/substance-painter.svg',
-        'MotionBuilder': 'https://1000logos.net/wp-content/uploads/2023/04/Autodesk-MotionBuilder-Logo.png', // Updated
-        'Unity Engine': 'https://upload.wikimedia.org/wikipedia/commons/c/c4/Unity_2021.svg',
-        'Unreal Engine': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Unreal_Engine_Logo.svg/1280px-Unreal_Engine_Logo.svg.png', // Updated (black/neutral version)
-        'Houdini': 'https://www.sidefx.com/media/uploads/company/press/logos/houdini_black.svg',
-        'Adobe Illustrator': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/2101px-Adobe_Illustrator_CC_icon.svg.png',
-        'Figma': 'https://cdn.sanity.io/images/599r6htc/regionalized/5094051dac77593d0f0978bdcbabaf79e5bb855c-1080x1080.png?w=540&h=540&q=75&fit=max&auto=format',
-        'Corel Painter': 'https://cdn.worldvectorlogo.com/logos/corel-painter.svg',
-        'SketchUp': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/SketchUp_Logotype.svg/1280px-SketchUp_Logotype.svg.png',
-        '3ds Max': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Autodesk_3ds_Max_logo.svg/1200px-Autodesk_3ds_Max_logo.svg.png',
-        'Mudbox': 'https://1000logos.net/wp-content/uploads/2023/04/Autodesk-Mudbox-Logo.png',
+        'Adobe Photoshop': 'https://img.icons8.com/color/480/adobe-photoshop.png',
+        'Procreate': 'https://img.icons8.com/color/480/procreate.png',
+        'Autodesk Maya': 'https://img.icons8.com/color/480/autodesk-maya.png',
+        'Blender': 'https://img.icons8.com/color/480/blender-3d.png',
+        'ZBrush': 'https://img.icons8.com/color/480/zbrush.png', // 更新为Icons8
+        'Substance Painter': 'https://img.icons8.com/color/480/substance-painter.png',
+        'MotionBuilder': 'https://img.icons8.com/color/480/motionbuilder.png', // 更新为Icons8
+        'Unity Engine': 'https://img.icons8.com/color/480/unity.png',
+        'Unreal Engine': 'https://img.icons8.com/color/480/unreal-engine.png', // 更新为Icons8
+        'Houdini': 'https://img.icons8.com/color/480/houdini.png',
+        'Adobe Illustrator': 'https://img.icons8.com/color/480/adobe-illustrator.png',
+        'Figma': 'https://img.icons8.com/color/480/figma.png',
+        'Corel Painter': 'https://img.icons8.com/color/480/corel-painter.png', // 更新为Icons8
+        'SketchUp': 'https://img.icons8.com/color/480/sketchup.png', // 更新为Icons8
+        '3ds Max': 'https://img.icons8.com/color/480/3ds-max.png', // 更新为Icons8
+        'Mudbox': 'https://img.icons8.com/color/480/mudbox.png', // 更新为Icons8
         'Topogun': 'https://www.topogun.com/images/logo.png',
         'RizomUV': 'https://www.rizom-lab.com/wp-content/uploads/2023/10/LOGO_RIZOMUV_BLACK.png',
-        'Marmoset Toolbag': 'https://marmoset.co/wp-content/uploads/2023/07/Marmoset-Logo-Black-Inline-NoPadding.svg', // Updated (black version)
+        'Marmoset Toolbag': 'https://img.icons8.com/color/480/marmoset-toolbag.png', // 更新为Icons8
         'xNormal': 'http://www.xnormal.net/wp-content/uploads/2015/11/xNormal_logo_black_big_web.png',
-        'Substance Designer': 'https://cdn.worldvectorlogo.com/logos/substance-designer.svg',
+        'Substance Designer': 'https://img.icons8.com/color/480/substance-designer.png',
         '3D Coat': 'https://pilgway.com/files/0000/0208/9111/3DCoat_Primary_logo_horizontal_Dark_Text.png',
-        'Mari': 'https://www.foundry.com/products/mari/Mari_Icon_512x512.png', // Updated (specific Mari icon)
-        'RealityCapture': 'https://www.capturingreality.com/assets/img/RealityCapture_logo_Black-1920.png', // Updated (black version)
+        'Mari': 'https://img.icons8.com/fluency/480/mari-software.png', // 更新为Icons8
+        'RealityCapture': 'https://img.icons8.com/color/480/reality-capture.png', // 更新为Icons8
         'AdvancedSkeleton': 'https://www.animationstudios.com.au/advancedskeleton/images/advancedSkeletonLogoBig.gif',
         'mGear': 'https://mgear-framework.com/assets/images/logo_mgear.png',
-        'Rigify': 'https://download.blender.org/branding/blender_logo.svg', // Blender general, as Rigify is an addon
-        'Mixamo': 'https://logos-world.net/wp-content/uploads/2021/03/Adobe-Mixamo-Logo.png',
-        'NVIDIA Skinning Tools': 'https://developer.nvidia.com/sites/default/files/akamai/cuda/images/nvidia-logo.png', // NVIDIA general
+        'Rigify': 'https://img.icons8.com/color/480/blender-3d.png', // Blender general, as Rigify is an addon
+        'Mixamo': 'https://img.icons8.com/color/480/mixamo.png', // 更新为Icons8
+        'NVIDIA Skinning Tools': 'https://img.icons8.com/color/480/nvidia.png', // NVIDIA general
         'Spine': 'http://esotericsoftware.com/img/logo/logo-wordmark-color-darktext-hires.png',
         'Live2D': 'https://www.live2d.com/wp-content/themes/live2d_new3/assets/img/general/logo_live2d_cubism_main_alpha.png',
-        'Adobe Animate': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Adobe_Animate_CC_icon.svg/1200px-Adobe_Animate_CC_icon.svg.png',
+        'Adobe Animate': 'https://img.icons8.com/color/480/adobe-animate.png',
         'PopcornFX': 'https://www.popcornfx.com/wp-content/uploads/2022/02/logo-popcornfx-noir.png',
-        'Adobe After Effects': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/1051px-Adobe_After_Effects_CC_icon.svg.png',
-        'EmberGen': 'https://jangafx.com/img/EmberGen_logo_black.svg', // Updated (black version)
-        'Sketch': 'https://cdn.worldvectorlogo.com/logos/sketch-1.svg',
-        'Adobe XD': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Adobe_XD_CC_icon.svg/2048px-Adobe_XD_CC_icon.svg.png',
+        'Adobe After Effects': 'https://img.icons8.com/color/480/adobe-after-effects.png',
+        'EmberGen': 'https://img.icons8.com/color/480/embergen.png', // 更新为Icons8
+        'Sketch': 'https://img.icons8.com/color/480/sketch.png',
+        'Adobe XD': 'https://img.icons8.com/color/480/adobe-xd.png',
         'Principle': 'https://principleformac.com/img/logo-icon-rect.svg',
         'Scaleform': 'https://images.squarespace-cdn.com/content/v1/5a7a3625e45a7c902c5d791c/1579033642799-K1C2CRK8SA62O6W5H9LI/GFx_Logo_Black_Large.png',
         'Axure': 'https://www.axure.com/wp-content/uploads/2022/04/axure_logo_175.svg',
         'TexturePacker': 'https://www.codeandweb.com/images/texturepacker/logo-texturepacker.png',
-        'CryEngine': 'https://asset.brandfetch.io/id1VI2kfOs/idVXNKnkQG.svg',
-        'Godot Engine': 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg',
-        'Git': 'https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png',
-        'Perforce': 'https://www.perforce.com/themes/custom/perforce/images/logo-tag.svg',
+        'CryEngine': 'https://img.icons8.com/color/480/cryengine.png', // 更新为Icons8
+        'Godot Engine': 'https://img.icons8.com/color/480/godot-engine.png',
+        'Git': 'https://img.icons8.com/color/480/git.png',
+        'Perforce': 'https://img.icons8.com/color/480/perforce.png', // 更新为Icons8
         'RenderDoc': 'https://renderdoc.org/renderdoc_logo_v1_cropped.png',
         'PIX': 'https://learn.microsoft.com/en-us/gaming/gdk/_images/pix-splash-logo.png',
-        'Xcode Instruments': 'https://developer.apple.com/assets/elements/icons/xcode/xcode-128x128_2x.png', // Xcode general
-        'Visual Studio': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/1024px-Visual_Studio_Icon_2019.svg.png'
+        'Xcode Instruments': 'https://img.icons8.com/color/480/xcode.png', // Xcode general
+        'Visual Studio': 'https://img.icons8.com/color/480/visual-studio.png'
     };
 
     // 图标加载错误处理函数
