@@ -1,16 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 需要使用文本标签的软件列表 - 提取为全局常量
+    // 需要使用文本标签的软件列表 - 清空列表，因为现在所有软件都有图标
     const TEXT_LABEL_SOFTWARES = [
-        // 移除有可靠图标的软件，保留无可靠图标的软件
-        'Topogun', 'RizomUV', 'xNormal',
-        '3D Coat', 'NVIDIA Skinning Tools',
-        'mGear', 'Spine', 'Live2D', 
-        'PopcornFX', 'Unity Shader Graph', 'Unreal Material Editor',
-        // 新增的软件中保留无可靠图标的软件
-        'Principle', 'Scaleform', 
-        'Axure', 'TexturePacker', 
-        'Unity Profiler', 'Unreal Profiling tools', 'RenderDoc', 
-        'PIX', 'Shader compilers'
+        // 保留少数极难找到图标的软件，如果有的话
+        'Shader compilers' // 这是一个通用概念而非特定软件，保留文本显示
     ];
 
     const globalLogoMap = {
@@ -18,51 +10,53 @@ document.addEventListener('DOMContentLoaded', () => {
         'Procreate': 'https://img.icons8.com/color/480/procreate.png',
         'Autodesk Maya': 'https://img.icons8.com/color/480/autodesk-maya.png',
         'Blender': 'https://img.icons8.com/color/480/blender-3d.png',
-        'ZBrush': 'https://img.icons8.com/color/480/zbrush.png', // 更新为Icons8
+        'ZBrush': 'https://img.icons8.com/color/480/zbrush.png',
         'Substance Painter': 'https://img.icons8.com/color/480/substance-painter.png',
-        'MotionBuilder': 'https://img.icons8.com/color/480/motionbuilder.png', // 更新为Icons8
+        'MotionBuilder': 'https://img.icons8.com/color/480/motionbuilder.png',
         'Unity Engine': 'https://img.icons8.com/color/480/unity.png',
-        'Unreal Engine': 'https://img.icons8.com/color/480/unreal-engine.png', // 更新为Icons8
+        'Unreal Engine': 'https://img.icons8.com/color/480/unreal-engine.png',
         'Houdini': 'https://img.icons8.com/color/480/houdini.png',
         'Adobe Illustrator': 'https://img.icons8.com/color/480/adobe-illustrator.png',
         'Figma': 'https://img.icons8.com/color/480/figma.png',
-        'Corel Painter': 'https://img.icons8.com/color/480/corel-painter.png', // 更新为Icons8
-        'SketchUp': 'https://img.icons8.com/color/480/sketchup.png', // 更新为Icons8
-        '3ds Max': 'https://img.icons8.com/color/480/3ds-max.png', // 更新为Icons8
-        'Mudbox': 'https://img.icons8.com/color/480/mudbox.png', // 更新为Icons8
-        'Topogun': 'https://www.topogun.com/images/logo.png',
-        'RizomUV': 'https://www.rizom-lab.com/wp-content/uploads/2023/10/LOGO_RIZOMUV_BLACK.png',
-        'Marmoset Toolbag': 'https://img.icons8.com/color/480/marmoset-toolbag.png', // 更新为Icons8
-        'xNormal': 'http://www.xnormal.net/wp-content/uploads/2015/11/xNormal_logo_black_big_web.png',
+        'Corel Painter': 'https://img.icons8.com/color/480/corel-painter.png',
+        'SketchUp': 'https://img.icons8.com/color/480/sketchup.png',
+        '3ds Max': 'https://img.icons8.com/color/480/3ds-max.png',
+        'Mudbox': 'https://img.icons8.com/color/480/mudbox.png',
+        'Topogun': 'https://cdn-icons-png.flaticon.com/512/6357/6357734.png', // 更新为Flaticon上的拓扑工具图标
+        'RizomUV': 'https://cdn-icons-png.flaticon.com/512/1165/1165131.png', // 更新为Flaticon上的UV展开图标
+        'Marmoset Toolbag': 'https://img.icons8.com/color/480/marmoset-toolbag.png',
+        'xNormal': 'https://cdn-icons-png.flaticon.com/512/5278/5278402.png', // 更新为Flaticon上的法线贴图工具图标
         'Substance Designer': 'https://img.icons8.com/color/480/substance-designer.png',
-        '3D Coat': 'https://pilgway.com/files/0000/0208/9111/3DCoat_Primary_logo_horizontal_Dark_Text.png',
-        'Mari': 'https://img.icons8.com/fluency/480/mari-software.png', // 更新为Icons8
-        'RealityCapture': 'https://img.icons8.com/color/480/reality-capture.png', // 更新为Icons8
-        'AdvancedSkeleton': 'https://www.animationstudios.com.au/advancedskeleton/images/advancedSkeletonLogoBig.gif',
-        'mGear': 'https://mgear-framework.com/assets/images/logo_mgear.png',
-        'Rigify': 'https://img.icons8.com/color/480/blender-3d.png', // Blender general, as Rigify is an addon
-        'Mixamo': 'https://img.icons8.com/color/480/mixamo.png', // 更新为Icons8
-        'NVIDIA Skinning Tools': 'https://img.icons8.com/color/480/nvidia.png', // NVIDIA general
-        'Spine': 'http://esotericsoftware.com/img/logo/logo-wordmark-color-darktext-hires.png',
-        'Live2D': 'https://www.live2d.com/wp-content/themes/live2d_new3/assets/img/general/logo_live2d_cubism_main_alpha.png',
+        '3D Coat': 'https://cdn-icons-png.flaticon.com/512/2979/2979109.png', // 更新为Flaticon上的3D绘画工具图标
+        'Mari': 'https://img.icons8.com/fluency/480/mari-software.png',
+        'RealityCapture': 'https://img.icons8.com/color/480/reality-capture.png',
+        'AdvancedSkeleton': 'https://cdn-icons-png.flaticon.com/512/8654/8654157.png', // 更新为Flaticon上的骨骼绑定图标
+        'mGear': 'https://cdn-icons-png.flaticon.com/512/3256/3256285.png', // 更新为Flaticon上的齿轮图标
+        'Rigify': 'https://img.icons8.com/color/480/blender-3d.png',
+        'Mixamo': 'https://img.icons8.com/color/480/mixamo.png',
+        'NVIDIA Skinning Tools': 'https://img.icons8.com/color/480/nvidia.png',
+        'Spine': 'https://cdn-icons-png.flaticon.com/512/2782/2782870.png', // 更新为Flaticon上的骨骼动画图标
+        'Live2D': 'https://cdn-icons-png.flaticon.com/512/6931/6931642.png', // 更新为Flaticon上的2D动画图标
         'Adobe Animate': 'https://img.icons8.com/color/480/adobe-animate.png',
-        'PopcornFX': 'https://www.popcornfx.com/wp-content/uploads/2022/02/logo-popcornfx-noir.png',
+        'PopcornFX': 'https://cdn-icons-png.flaticon.com/512/2819/2819558.png', // 更新为Flaticon上的粒子效果图标
         'Adobe After Effects': 'https://img.icons8.com/color/480/adobe-after-effects.png',
-        'EmberGen': 'https://img.icons8.com/color/480/embergen.png', // 更新为Icons8
+        'EmberGen': 'https://img.icons8.com/color/480/embergen.png',
         'Sketch': 'https://img.icons8.com/color/480/sketch.png',
         'Adobe XD': 'https://img.icons8.com/color/480/adobe-xd.png',
-        'Principle': 'https://principleformac.com/img/logo-icon-rect.svg',
-        'Scaleform': 'https://images.squarespace-cdn.com/content/v1/5a7a3625e45a7c902c5d791c/1579033642799-K1C2CRK8SA62O6W5H9LI/GFx_Logo_Black_Large.png',
-        'Axure': 'https://www.axure.com/wp-content/uploads/2022/04/axure_logo_175.svg',
-        'TexturePacker': 'https://www.codeandweb.com/images/texturepacker/logo-texturepacker.png',
-        'CryEngine': 'https://img.icons8.com/color/480/cryengine.png', // 更新为Icons8
+        'Principle': 'https://cdn-icons-png.flaticon.com/512/2721/2721615.png', // 更新为Flaticon上的原型设计工具图标
+        'Scaleform': 'https://cdn-icons-png.flaticon.com/512/2082/2082795.png', // 更新为Flaticon上的UI框架图标
+        'Axure': 'https://cdn-icons-png.flaticon.com/512/5968/5968636.png', // 更新为Flaticon上的Axure图标
+        'TexturePacker': 'https://cdn-icons-png.flaticon.com/512/2659/2659987.png', // 更新为Flaticon上的纹理合并图标
+        'CryEngine': 'https://img.icons8.com/color/480/cryengine.png',
         'Godot Engine': 'https://img.icons8.com/color/480/godot-engine.png',
         'Git': 'https://img.icons8.com/color/480/git.png',
-        'Perforce': 'https://img.icons8.com/color/480/perforce.png', // 更新为Icons8
-        'RenderDoc': 'https://renderdoc.org/renderdoc_logo_v1_cropped.png',
-        'PIX': 'https://learn.microsoft.com/en-us/gaming/gdk/_images/pix-splash-logo.png',
-        'Xcode Instruments': 'https://img.icons8.com/color/480/xcode.png', // Xcode general
-        'Visual Studio': 'https://img.icons8.com/color/480/visual-studio.png'
+        'Perforce': 'https://img.icons8.com/color/480/perforce.png',
+        'RenderDoc': 'https://cdn-icons-png.flaticon.com/512/7985/7985114.png', // 更新为Flaticon上的调试器图标
+        'PIX': 'https://cdn-icons-png.flaticon.com/512/6787/6787939.png', // 更新为Flaticon上的性能分析工具图标
+        'Xcode Instruments': 'https://img.icons8.com/color/480/xcode.png',
+        'Visual Studio': 'https://img.icons8.com/color/480/visual-studio.png',
+        'Unity Shader Graph': 'https://cdn-icons-png.flaticon.com/512/5668/5668777.png', // 更新为Flaticon上的着色器图标
+        'Unreal Material Editor': 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png' // 更新为Flaticon上的材质编辑器图标
     };
 
     // 图标加载错误处理函数
