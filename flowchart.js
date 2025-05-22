@@ -6,57 +6,57 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const globalLogoMap = {
-        'Adobe Photoshop': 'https://img.icons8.com/color/480/adobe-photoshop.png',
-        'Procreate': 'https://img.icons8.com/color/480/procreate.png',
-        'Autodesk Maya': 'https://img.icons8.com/color/480/autodesk-maya.png',
-        'Blender': 'https://img.icons8.com/color/480/blender-3d.png',
-        'ZBrush': 'https://img.icons8.com/color/480/zbrush.png',
-        'Substance Painter': 'https://img.icons8.com/color/480/substance-painter.png',
-        'MotionBuilder': 'https://img.icons8.com/color/480/motionbuilder.png',
-        'Unity Engine': 'https://img.icons8.com/color/480/unity.png',
-        'Unreal Engine': 'https://img.icons8.com/color/480/unreal-engine.png',
-        'Houdini': 'https://img.icons8.com/color/480/houdini.png',
-        'Adobe Illustrator': 'https://img.icons8.com/color/480/adobe-illustrator.png',
-        'Figma': 'https://img.icons8.com/color/480/figma.png',
-        'Corel Painter': 'https://img.icons8.com/color/480/corel-painter.png',
-        'SketchUp': 'https://img.icons8.com/color/480/sketchup.png',
-        '3ds Max': 'https://img.icons8.com/color/480/3ds-max.png',
-        'Mudbox': 'https://img.icons8.com/color/480/mudbox.png',
-        'Topogun': 'https://cdn-icons-png.flaticon.com/512/6357/6357734.png', // 更新为Flaticon上的拓扑工具图标
-        'RizomUV': 'https://cdn-icons-png.flaticon.com/512/1165/1165131.png', // 更新为Flaticon上的UV展开图标
-        'Marmoset Toolbag': 'https://img.icons8.com/color/480/marmoset-toolbag.png',
-        'xNormal': 'https://cdn-icons-png.flaticon.com/512/5278/5278402.png', // 更新为Flaticon上的法线贴图工具图标
-        'Substance Designer': 'https://img.icons8.com/color/480/substance-designer.png',
-        '3D Coat': 'https://cdn-icons-png.flaticon.com/512/2979/2979109.png', // 更新为Flaticon上的3D绘画工具图标
-        'Mari': 'https://img.icons8.com/fluency/480/mari-software.png',
-        'RealityCapture': 'https://img.icons8.com/color/480/reality-capture.png',
-        'AdvancedSkeleton': 'https://cdn-icons-png.flaticon.com/512/8654/8654157.png', // 更新为Flaticon上的骨骼绑定图标
-        'mGear': 'https://cdn-icons-png.flaticon.com/512/3256/3256285.png', // 更新为Flaticon上的齿轮图标
-        'Rigify': 'https://img.icons8.com/color/480/blender-3d.png',
-        'Mixamo': 'https://img.icons8.com/color/480/mixamo.png',
-        'NVIDIA Skinning Tools': 'https://img.icons8.com/color/480/nvidia.png',
-        'Spine': 'https://cdn-icons-png.flaticon.com/512/2782/2782870.png', // 更新为Flaticon上的骨骼动画图标
-        'Live2D': 'https://cdn-icons-png.flaticon.com/512/6931/6931642.png', // 更新为Flaticon上的2D动画图标
-        'Adobe Animate': 'https://img.icons8.com/color/480/adobe-animate.png',
-        'PopcornFX': 'https://cdn-icons-png.flaticon.com/512/2819/2819558.png', // 更新为Flaticon上的粒子效果图标
-        'Adobe After Effects': 'https://img.icons8.com/color/480/adobe-after-effects.png',
-        'EmberGen': 'https://img.icons8.com/color/480/embergen.png',
-        'Sketch': 'https://img.icons8.com/color/480/sketch.png',
-        'Adobe XD': 'https://img.icons8.com/color/480/adobe-xd.png',
-        'Principle': 'https://cdn-icons-png.flaticon.com/512/2721/2721615.png', // 更新为Flaticon上的原型设计工具图标
-        'Scaleform': 'https://cdn-icons-png.flaticon.com/512/2082/2082795.png', // 更新为Flaticon上的UI框架图标
-        'Axure': 'https://cdn-icons-png.flaticon.com/512/5968/5968636.png', // 更新为Flaticon上的Axure图标
-        'TexturePacker': 'https://cdn-icons-png.flaticon.com/512/2659/2659987.png', // 更新为Flaticon上的纹理合并图标
-        'CryEngine': 'https://img.icons8.com/color/480/cryengine.png',
-        'Godot Engine': 'https://img.icons8.com/color/480/godot-engine.png',
-        'Git': 'https://img.icons8.com/color/480/git.png',
-        'Perforce': 'https://img.icons8.com/color/480/perforce.png',
-        'RenderDoc': 'https://cdn-icons-png.flaticon.com/512/7985/7985114.png', // 更新为Flaticon上的调试器图标
-        'PIX': 'https://cdn-icons-png.flaticon.com/512/6787/6787939.png', // 更新为Flaticon上的性能分析工具图标
-        'Xcode Instruments': 'https://img.icons8.com/color/480/xcode.png',
-        'Visual Studio': 'https://img.icons8.com/color/480/visual-studio.png',
-        'Unity Shader Graph': 'https://cdn-icons-png.flaticon.com/512/5668/5668777.png', // 更新为Flaticon上的着色器图标
-        'Unreal Material Editor': 'https://cdn-icons-png.flaticon.com/512/5968/5968282.png' // 更新为Flaticon上的材质编辑器图标
+        'Adobe Photoshop': './icons/icons8/adobe-photoshop.png',
+        'Procreate': './icons/icons8/procreate.png',
+        'Autodesk Maya': './icons/icons8/autodesk-maya.png',
+        'Blender': './icons/icons8/blender-3d.png',
+        'ZBrush': './icons/icons8/zbrush.png',
+        'Substance Painter': './icons/icons8/substance-painter.png',
+        'MotionBuilder': './icons/icons8/motionbuilder.png',
+        'Unity Engine': './icons/icons8/unity.png',
+        'Unreal Engine': './icons/icons8/unreal-engine.png',
+        'Houdini': './icons/icons8/houdini.png',
+        'Adobe Illustrator': './icons/icons8/adobe-illustrator.png',
+        'Figma': './icons/icons8/figma.png',
+        'Corel Painter': './icons/icons8/corel-painter.png',
+        'SketchUp': './icons/icons8/sketchup.png',
+        '3ds Max': './icons/icons8/3ds-max.png',
+        'Mudbox': './icons/icons8/mudbox.png',
+        'Topogun': './icons/flaticon/topogun.png',
+        'RizomUV': './icons/flaticon/rizomuv.png',
+        'Marmoset Toolbag': './icons/icons8/marmoset-toolbag.png',
+        'xNormal': './icons/flaticon/xnormal.png',
+        'Substance Designer': './icons/icons8/substance-designer.png',
+        '3D Coat': './icons/flaticon/3d-coat.png',
+        'Mari': './icons/icons8/mari-software.png',
+        'RealityCapture': './icons/icons8/reality-capture.png',
+        'AdvancedSkeleton': './icons/flaticon/advanced-skeleton.png',
+        'mGear': './icons/flaticon/mgear.png',
+        'Rigify': './icons/icons8/blender-3d.png',
+        'Mixamo': './icons/icons8/mixamo.png',
+        'NVIDIA Skinning Tools': './icons/icons8/nvidia.png',
+        'Spine': './icons/flaticon/spine.png',
+        'Live2D': './icons/flaticon/live2d.png',
+        'Adobe Animate': './icons/icons8/adobe-animate.png',
+        'PopcornFX': './icons/flaticon/popcornfx.png',
+        'Adobe After Effects': './icons/icons8/adobe-after-effects.png',
+        'EmberGen': './icons/icons8/embergen.png',
+        'Sketch': './icons/icons8/sketch.png',
+        'Adobe XD': './icons/icons8/adobe-xd.png',
+        'Principle': './icons/flaticon/principle.png',
+        'Scaleform': './icons/flaticon/scaleform.png',
+        'Axure': './icons/flaticon/axure.png',
+        'TexturePacker': './icons/flaticon/texture-packer.png',
+        'CryEngine': './icons/icons8/cryengine.png',
+        'Godot Engine': './icons/icons8/godot-engine.png',
+        'Git': './icons/icons8/git.png',
+        'Perforce': './icons/icons8/perforce.png',
+        'RenderDoc': './icons/flaticon/renderdoc.png',
+        'PIX': './icons/flaticon/pix.png',
+        'Xcode Instruments': './icons/icons8/xcode.png',
+        'Visual Studio': './icons/icons8/visual-studio.png',
+        'Unity Shader Graph': './icons/flaticon/shader-graph.png',
+        'Unreal Material Editor': './icons/flaticon/material-editor.png'
     };
 
     // 图标加载错误处理函数
